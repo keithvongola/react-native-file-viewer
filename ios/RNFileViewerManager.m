@@ -113,8 +113,9 @@ RCT_EXPORT_METHOD(open:(NSString *)path invocation:(nonnull NSNumber *)invocatio
 {
     NSString *displayName = [RCTConvert NSString:options[@"displayName"]];
     File *file = [[File alloc] initWithPath:path title:displayName];
+    NSString *shareUrl = [RCTConvert NSString:options[@"shareUrl"]];
 
-    QLPreviewController *controller = [[CustomQLViewController alloc] initWithFile:file identifier:invocationId];
+    QLPreviewController *controller = [[CustomQLViewController alloc] initWithFile:file identifier:invocationId canonicalWebPageURL:shareUrl];
     controller.delegate = self;
 
     typeof(self) __weak weakSelf = self;
